@@ -22,4 +22,4 @@ jobs:
         run: |
           az account show
           az group list
-          az graph query --first 1 -q "where type =~ 'microsoft.compute/disks' | where properties.diskState =~ 'Unattached' " -allow-preview true
+          az graph query -q "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | summarize count() by tostring(properties.storageProfile.osDisk.osType)"
